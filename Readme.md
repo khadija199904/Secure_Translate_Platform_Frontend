@@ -1,63 +1,132 @@
-# 🌐 TalAIt - Secure Translation Platform
+#  Frontend – Secure Translate Platform (React)
 
-**TalAIt** est une application Fullstack sécurisée permettant la traduction instantanée de données sensibles pour les entreprises, utilisant la puissance des modèles d'IA neuronaux.
+Ce document décrit la structure, les fonctionnalités et le fonctionnement du **frontend React** de l’application Secure Translate Platform.  
+Il couvre également la **dockerisation complète** de l’application (backend + frontend + base de données).
 
 ---
-
-## 📖 Contexte du Projet
-
-La start-up *TalAIt* prépare son expansion aux États-Unis. Les équipes (Marketing & Service Client) avaient besoin d'un outil pour traduire des fiches produits et des tickets clients sans passer par des outils publics non sécurisés.
-
-**La solution :** Une plateforme interne, accessible uniquement via authentification, connectée à des modèles d'IA performants.
-
-## ✨ Fonctionnalités Clés
-
-- **Authentification Sécurisée :** Système de Login avec génération et validation de Tokens JWT.
-- **Intelligence Artificielle :** Intégration de l'API Hugging Face (Modèles Helsinki-NLP).
-- **Bi-directionnel :** Traduction Français ➝ Anglais et Anglais ➝ Français.
-- **Interface Réactive :** Frontend rapide développé avec React & Vite.
-- **Protection des Routes :** Impossible d'accéder au traducteur sans être connecté.
 
 ## Stack Technique
-
-### Frontend
 - **React.js** (Vite)
-- **CSS3** (Design responsive & moderne)
+- **CSS** (Design responsive & moderne)
 - **Fetch API** (Communication asynchrone)
-
-### Backend
-- **Python**
-- **FastAPI** (API REST performante)
-- **Hugging Face Inference API** (Moteur de traduction)
-- **JWT** (Sécurité)
 
 ---
 
-## 🚀 Installation et Démarrage
-
 ### Pré-requis
-- Node.js
-- Python 3.9+
-- Une clé API Hugging Face (gratuite)
+*   [Node.js](https://nodejs.org/)
+*   [npm](https://www.npmjs.com/get-npm)
 
-### 1. Backend
+
+
+### Installation
+
+1.  Clonez le dépôt
+    ```sh
+    git clone https://github.com/khadija199904/Secure_Translate_Platform_Frontend
+    ```
+2.  Installez les dépendances NPM
+    ```sh
+    npm install
+    ```
+3.  Démarrez l'application en mode développement
+    ```sh
+    npm start
+    ```
+    L'application devrait s'ouvrir dans votre navigateur à l'adresse `http://localhost:3000`.
+
+
+
+###  Structure du Répertoire
+
 ```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
 
+├── Secure_Translate_Platform_Frontend/
+│
+├── translate_app/
+│   ├── public/                         # Fichiers statiques accessibles
+│   │   └── TR5.jpg                     # Image utilisée dans le projet
+│
+│   ├── src/                            # Code source Next.js
+│   │   ├── assets/                     # Images / icônes internes
+│   │   │   └── (images...)
+│   │   │
+│   │   ├── components/                 # Composants réutilisables
+│   │   │   ├── About.jsx
+│   │   │   └── About.css
+│   │   │
+│   │   ├── pages/                      # Pages principales
+│   │   │   ├── RegisterLogin/
+│   │   │   ├── ├── Auth.css
+│   │   │   │   └── Auth.jsx            # Authentification (login + register)
+│   │   │   └── Translate/
+│   │   │       ├── Translate.jsx       # Page de traduction
+│   │   │       └── Translate.css
+│   │
+├── Dockerfile   
+│
+├── docker-compose.yml              # Orchestration Docker
+├── Readme.md  
+└── .dockerignore                   # Fichiers ignorés par Docker
+
+ ```
+
+ ### Aperçu de l'Application
+
+Cette section présente les différentes interfaces clés de la plateforme de traduction, illustrant le parcours utilisateur complet : connexion, inscription, traduction et affichage des résultats.
+
+---
+
+#### 1. Page de Connexion
+
+L'utilisateur débute sur la page de connexion, où il s’identifie pour obtenir un jeton JWT.  
+L’interface est simple et ergonomique, facilitant une authentification rapide et sécurisée.
+
+![Page de Connexion](/images/login_pages.png)
+
+---
+
+#### 2. Page d’Inscription
+
+Pour les nouveaux utilisateurs, la plateforme propose une page d'inscription dédiée.  
+Le formulaire est clair, permettant la création d’un compte en quelques secondes avant d’accéder aux fonctionnalités de traduction.
+
+![Page d’Inscription](/images/register_page.png)
+
+---
+
+#### 3. Page de Traduction
+
+Après connexion, l'utilisateur accède à la page principale de l’application.  
+Il peut :
+
+- saisir le texte à traduire,  
+- choisir la direction (FR → EN ou EN → FR),  
+- lancer la traduction via le backend sécurisé.  
+- Recoi une traduction de text 
+
+L’interface est épurée, centrée sur la facilité d’utilisation.
+
+![Page de Traduction](/images/Translate_page.png)
+
+---
+##  Lancement avec Docker
+
+### 1. Lancer le Frontend
+
+```bash
+docker build -t translate-frontend .
+docker run -p 3000:3000 translate-frontend
 ```
 
+### Lancer toute la plateforme (Frontend + Backend + PostgreSQL)
 ```bash
-src/
-├── assets/
-├── components/
-│   ├── About.css
-│   └── About.jsx       
-├── pages/
-│   ├── RegisterLogin/
-│   │   └── Auth.jsx
-│   └── Translate/      i
-│       ├── Translate.css
-│       └── Translate.jsx
- ```
+docker-compose up --build
+```
+
+
+## Auteur
+
+**Nom :** KHADIJA ELABBIOUI  
+**Email :** khadija.elabbioui1999@gmail.com  
+**LinkedIn :** [linkedin.com/in/khadija-elabbioui](https://www.linkedin.com/in/khadija-elabbioui-308499216/)  
+**GitHub :** [github.com/ton-github](https://github.com/khadija199904)
