@@ -32,7 +32,7 @@ Il couvre également la **dockerisation complète** de l’application (backend 
     ```sh
     npm run dev
     ```
-    L'application devrait s'ouvrir dans votre navigateur à l'adresse `http://localhost:3000`.
+    L'application devrait s'ouvrir dans votre navigateur à l'adresse `http://localhost:5173/`.
 
 
 
