@@ -1,0 +1,2 @@
+for run dok.yml 
+doker-compose build
